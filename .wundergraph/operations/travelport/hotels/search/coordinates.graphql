@@ -1,0 +1,46 @@
+query HotelSearchByCoordinates(
+  $latitude: Float!
+  $longitude: Float!
+  $radius: Int
+  $checkIn: String!
+  $checkOut: String!
+  $rooms: Int!
+  $adults: Int!
+) {
+  travelport_hotelSearchByCoordinates(
+    input: {
+      latitude: $latitude
+      longitude: $longitude
+      radiusInKm: $radius
+      checkInDate: $checkIn
+      checkOutDate: $checkOut
+      rooms: $rooms
+      adults: $adults
+    }
+  ) {
+    hotels {
+      propertyId
+      name
+      description
+      address {
+        streetAddress
+        city
+        stateProvince
+        country
+        postalCode
+      }
+      rating
+      amenities
+      rates {
+        amount
+        currency
+        roomType
+        boardBasis
+      }
+      distanceFromLocation {
+        value
+        unit
+      }
+    }
+  }
+}

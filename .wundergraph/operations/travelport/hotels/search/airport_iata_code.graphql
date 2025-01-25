@@ -1,0 +1,44 @@
+query HotelSearchByAirport(
+  $airportCode: String!
+  $radius: Int
+  $checkIn: String!
+  $checkOut: String!
+  $rooms: Int!
+  $adults: Int!
+) {
+  travelport_hotelSearchByAirport(
+    input: {
+      airportCode: $airportCode
+      radiusInKm: $radius
+      checkInDate: $checkIn
+      checkOutDate: $checkOut
+      rooms: $rooms
+      adults: $adults
+    }
+  ) {
+    hotels {
+      propertyId
+      name
+      description
+      address {
+        streetAddress
+        city
+        stateProvince
+        country
+        postalCode
+      }
+      rating
+      amenities
+      rates {
+        amount
+        currency
+        roomType
+        boardBasis
+      }
+      distanceFromAirport {
+        value
+        unit
+      }
+    }
+  }
+}
