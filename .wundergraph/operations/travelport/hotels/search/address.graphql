@@ -1,0 +1,46 @@
+query HotelSearchByAddress(
+  $address: String!
+  $city: String!
+  $country: String!
+  $checkIn: String!
+  $checkOut: String!
+  $rooms: Int!
+  $adults: Int!
+) {
+  travelport_hotelSearchByAddress(
+    input: {
+      address: $address
+      city: $city
+      country: $country
+      checkInDate: $checkIn
+      checkOutDate: $checkOut
+      rooms: $rooms
+      adults: $adults
+    }
+  ) {
+    hotels {
+      propertyId
+      name
+      description
+      address {
+        streetAddress
+        city
+        stateProvince
+        country
+        postalCode
+      }
+      rating
+      amenities
+      rates {
+        amount
+        currency
+        roomType
+        boardBasis
+      }
+      images {
+        url
+        caption
+      }
+    }
+  }
+}

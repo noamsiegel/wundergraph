@@ -1,0 +1,44 @@
+query HotelSearchByProperty(
+  $propertyId: String!
+  $checkIn: String!
+  $checkOut: String!
+  $rooms: Int!
+  $adults: Int!
+) {
+  travelport_hotelSearchByProperty(
+    input: {
+      propertyId: $propertyId
+      checkInDate: $checkIn
+      checkOutDate: $checkOut
+      rooms: $rooms
+      adults: $adults
+    }
+  ) {
+    hotel {
+      propertyId
+      name
+      description
+      address {
+        streetAddress
+        city
+        stateProvince
+        country
+        postalCode
+      }
+      rating
+      amenities
+      policies
+      rates {
+        amount
+        currency
+        roomType
+        boardBasis
+        cancellationPolicy
+      }
+      images {
+        url
+        caption
+      }
+    }
+  }
+}
